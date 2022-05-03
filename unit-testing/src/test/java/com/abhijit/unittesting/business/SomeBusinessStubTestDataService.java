@@ -5,12 +5,24 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-public class SomeBusinessTest {
+import com.abhijit.unittesting.data.SomeDataService;
+
+class SomeDataServiceStub implements SomeDataService{
+
+	@Override
+	public int[] retriveAlldata() {
+		return new int[] {1,2,3,4};
+	}
+	
+}
+
+public class SomeBusinessStubTestDataService {
 
 	@Test
-	public void calculateSum_basic() {
+	public void calculateSumDataService_basic() {
 		SomeBusinessLogic business = new SomeBusinessLogic();
-		int actualResult = business.calculate(new int[] {1,2,3,4});
+		business.setDataService(new SomeDataServiceStub());
+		int actualResult = business.calculateUsingDataServcie();
 		int expectedResult = 10;
 		assertEquals(expectedResult, actualResult);
 	}
