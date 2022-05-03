@@ -5,17 +5,21 @@ import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.anyInt;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
+import org.mockito.Mockito;
+
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.atLeast;
 import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.spy;
 
 class MockList {
 
@@ -70,19 +74,27 @@ class MockList {
 		verify(mock).add(captor.capture());
 		assertEquals("abhijit", captor.getValue());
 	}
-	
+
 	@Test
 	public void multipleArgumentCapture() {
 
 		mock.add("abhijit");
 		mock.add("jadhav");
 
-
 		ArgumentCaptor<String> captor = ArgumentCaptor.forClass(String.class);
-		verify(mock,times(2)).add(captor.capture());
+		verify(mock, times(2)).add(captor.capture());
 		List<String> allValues = captor.getAllValues();
 		assertEquals("abhijit", allValues.get(0));
 		assertEquals("jadhav", allValues.get(1));
+	}
+
+	@Test
+	public void spying() {
+		ArrayList<String> spy = spy(ArrayList.class);
+		spy.add("abhijit");
+		spy.add("jadhav");
+		System.out.println(spy.get(1));
+		verify(spy).add("abhijit");
 	}
 
 }
