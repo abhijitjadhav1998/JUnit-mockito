@@ -1,5 +1,7 @@
 package com.abhijit.unittesting.model;
 
+import java.util.Objects;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Transient;
@@ -72,6 +74,28 @@ public class Item {
 
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
+	}
+
+
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, name, price, quantity, value);
+	}
+
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Item other = (Item) obj;
+		return id == other.id && Objects.equals(name, other.name) && price == other.price && quantity == other.quantity
+				&& value == other.value;
 	}
 
 	

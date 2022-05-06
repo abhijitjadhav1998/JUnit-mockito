@@ -24,5 +24,12 @@ public class ItemRepositoryTest {
 		List<Item> items = repository.findAll();
 		assertEquals(5,items.size());
 	}
+	
+	@Test
+	public void findByIdAndNameTest() {
+		Item expected = new Item(1002,"Item2",20,20);
+		Item item = repository.findByIdAndName(1002, "Item2");
+		assertEquals(expected, item);
+	}
 
 }

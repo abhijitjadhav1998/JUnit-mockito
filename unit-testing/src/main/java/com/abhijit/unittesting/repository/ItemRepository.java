@@ -8,6 +8,6 @@ import com.abhijit.unittesting.model.Item;
 @Repository
 public interface ItemRepository extends JpaRepository<Item, Integer>{
 	
-	public Item findByIdAndName(int id, String name);
+	public Item findByIdAndName(Integer id, String name);
 
 }
