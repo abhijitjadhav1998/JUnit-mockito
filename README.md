@@ -1,2 +1,2 @@
 # JUnit-mockito
-Learnings of JUnit Mockito
+All Learnings of JUnit Mockito
